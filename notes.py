@@ -1,3 +1,136 @@
+# Steel function
+def make_steel(total_workers_needed, total_raw_ore, firewood):
+    steel = total_workers_needed + total_raw_ore // firewood
+    return steel
+
+steel_produced = make_steel(20, 666, 10)
+print("Steel Produced: ", steel_produced)
+
+
+
+# Simple adding function
+def add_together(num1, num2):
+    return num1 + num2
+
+result = add_together(5, 8)
+print("Result: ", result)
+
+
+
+# Simple adding function returning a list
+def add_together(num1, num2):
+    result = num1 + num2
+    return [result, "Hello"]
+
+
+outer_result = add_together(2, 20)
+print("Result: ", outer_result[0])
+print("Message: ", outer_result[1])
+
+
+# Change a global value in the global scope
+global_x = "Global X"
+
+def change_global_x():
+        return "Global Chicken"
+
+print("Before: ", global_x)
+global_x = change_global_x()
+print("After: ", global_x)  
+
+
+# Change a global value in the global scope with an argument (with this you do not really need the function as you are basically reassigning global_x)
+global_x = "Global X"
+
+def change_global_x(new_value):
+        return new_value
+
+print("Before: ", global_x)
+global_x = change_global_x("Global Chicken")
+print("After: ", global_x)  
+
+# Using global keyword to allow'small scope' to change 'global scope' not correct ay to change a global value even though it is possible
+global_x = "Global X"
+
+def change_global_x():
+        global global_x
+        global_x = "New value is Chicken"
+
+print("Before: ", global_x)
+change_global_x()
+print("After: ", global_x)  
+
+
+# Correct python way to reassign a global value
+global_x = "Global X"
+
+def change_global_x():
+        
+        temp_var = "Goose"
+        return temp_var
+
+print("Before: ", global_x)
+global_x = change_global_x()
+print("After: ", global_x)  
+
+
+# Practical use of reassigning a global value (note shouldn't use inputs in functions but jut to demonstrate a usage)
+user_name ="Unknown"
+user_age = 0
+
+def get_user_details():
+      name = input("What is your name? : ")
+      age = input("What is your age? : ")
+      return [name, age]
+
+result = get_user_details()
+user_name = result[0]
+user_age = result[1]
+
+print("User name: ", user_name)
+print("User age: ", user_age)
+
+#APIs
+import requests
+
+pick_character = input('select a character: ')
+
+endpoint = 'https://api.potterdb.com/v1/characters/'   # this endpoint returns data about Harry Potter characters
+
+print("endpoint before sending to API: ", endpoint)
+
+response = requests.get(endpoint) # making a call to the API
+
+print(response.status_code)  #status code 200, means success!
+
+data = response.json()  # lets see what data about Harry Potter characters we get back
+print(data['name'])
+
+# Boris Bikes
+class Calculator:
+
+    a = 1
+    b = 2
+    
+    def add(self, a, b):
+        return a + b
+
+import pytest
+from boris_bikes import Calculator
+
+def test_add():
+    calculator = Calculator()
+    result = calculator.add(1, 2)
+    assert result == 3
+
+def test_add():
+    calculator = Calculator()
+    result = calculator.add(5, 5)
+    assert result == 9
+
+
+
+
 # Syntax basics
 # Python uses indentation to define code blocks
 
